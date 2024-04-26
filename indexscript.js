@@ -38,7 +38,7 @@ async function postformdata(formobj){
                 "content-type":"Application/json"  // posting the data into json server so the content type is mentioned as json 
             },
             body:JSON.stringify(formobj)    // converting the object user into json using stringify method. the content inside the body will be posted at the server
-    
+
         });
     }catch(err){
         console.log(err);
