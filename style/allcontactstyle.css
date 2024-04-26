@@ -3,6 +3,7 @@
     border:0;
     box-sizing: border-box;
 }
+
 /* header style */
 .head{
     display: flex;
@@ -39,4 +40,34 @@
     font-weight: bold;
     padding-top: 30px;
 
+}
+
+/* table container  style */
+
+#table_container{
+    position: relative;
+    height:auto;
+}
+#getbtn{
+    position: absolute;
+    border:2px solid blue;
+    left:43%;
+    top:2%;
+    color:white;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: blue;
+}
+#btn{
+    border:1px solid red;
+    padding:5px;
+    color:white;
+    background-color: red;
+
+}
+#table{
+    position: absolute;
+    top:70px;
+    left:20%;
 }
