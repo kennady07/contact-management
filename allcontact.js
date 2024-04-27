@@ -11,7 +11,7 @@ document.getElementById("getbtn1").addEventListener("click", async function(){
                         <td>${e.email}</td>
                         <td>${e.phone}</td>
                         <td>${e.addr}</td>
-                        <td><button id="btn" onclick="editdata('${e.id}','${e.name}','${e.email}','${e.phone}','${e.addr}')">EDIT</button>&nbsp;<button id="btn" onclick="deletedata('${e.id}')">DELETE</button>&nbsp;<button id="btn" onclick="favdata()">FAVORITE</button></td>
+                        <td><button id="btn" onclick="editdata('${e.id}','${e.name}','${e.email}','${e.phone}','${e.addr}')">EDIT</button>&nbsp;<button id="btn" onclick="deletedata('${e.id}')">DELETE</button>&nbsp;<button id="btn23" onclick="favdata('${e.id}','${e.name}','${e.email}','${e.phone}','${e.addr}')">FAVORITE</button></td>
                     <tr>`;
         table.innerHTML += newrow;
     });
@@ -23,7 +23,7 @@ async function getdata(){
         const response = await fetch(API_URL, {
             method: "GET",
             headers: {
-                "Accept": "application/json"
+                "Accept": "Application/json"
             }
         });
         const data = await response.json();
@@ -48,7 +48,7 @@ async function deletedata(id){
     }
 }
 
-
+// update the contact details in json file
 async function editdata (id,name,email,phone,address){
 
     id=`${id}`
@@ -110,11 +110,45 @@ async function handle_editdata(user,id){
 
 
 
+// add to the favorite contact list page
 
+function favdata (id,name,email,phone,address){
+    alert("This contact details added to favorite contact files !!!!");
+    
+    //favbtn.style.display="none";
 
-
-function favdata(){
-    alert("it is working properly")
+    
+    const formobj={
+        id:`${id}`,
+        name:`${name}`,
+        email:`${email}`,
+        phone:`${phone}`,
+        addr:`${address}`
+    }
+    postfavdata(formobj);
+    const favbtn = document.getElementById("btn23");
+    favbtn.style.backgroundColor = "blue";
 }
+
+const API_URL1="http://localhost:5000/user"
+
+async function postfavdata(formobj){
+    try{
+       
+        const response = await fetch(API_URL1,{
+            method:"POST",
+            headers:{
+                "content-type":"Application/json"  // posting the data into json server so the content type is mentioned as json 
+            },
+            body:JSON.stringify(formobj)    // converting the object user into json using stringify method. the content inside the body will be posted at the server
+
+        });
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
+
 
 
